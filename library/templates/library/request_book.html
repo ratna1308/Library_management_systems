@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Request Book</title>
+</head>
+<body>
+    <h1>Request Book</h1>
+    <p>Book Title: {{ book.title }}</p>
+    <p>Author: {{ book.author }}</p>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Request</button>
+    </form>
+
+    <a href="{% url 'home' %}">Back to Home</a>
+</body>
+</html>

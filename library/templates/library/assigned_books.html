@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assigned Books</title>
+</head>
+<body>
+    <h1>Assigned Books</h1>
+    <ul>
+        {% for book_request in assigned_books %}
+            <li>{{ book_request.book.title }} (Assigned to: {{ book_request.user }})</li>
+        {% endfor %}
+    </ul>
+    <p><a href="{% url 'librarian_dashboard' %}">Back to Dashboard</a></p>
+</body>
+</html>

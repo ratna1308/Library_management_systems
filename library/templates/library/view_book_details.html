@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Details</title>
+</head>
+<body>
+    <h1>{{ book.title }}</h1>
+    <p>Author: {{ book.author }}</p>
+    <p>Stock: {{ book.stock }}</p>
+    <p>Status: {% if book.is_available %}Available{% else %}Not Available{% endif %}</p>
+    <p><a href="{% url 'librarian_dashboard' %}">Back to Dashboard</a></p>
+</body>
+</html>
