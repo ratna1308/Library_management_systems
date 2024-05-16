@@ -20,7 +20,7 @@
         {% endfor %}
     </ul>
     <h3>Request a New Book</h3>
-    <form method="post" action="{% url 'request_new_book' %}">
+    <form method="post" action="{% url 'request_book' %}">
       {% csrf_token %}
       <label for="title">Title:</label>
       <input type="text" name="title" required><br>

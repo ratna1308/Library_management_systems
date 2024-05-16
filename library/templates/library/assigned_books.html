@@ -7,9 +7,26 @@
     <h1>Assigned Books</h1>
     <ul>
         {% for book_request in assigned_books %}
-            <li>{{ book_request.book.title }} (Assigned to: {{ book_request.user }})</li>
+            <li>
+                {{ book_request.book.title }} - Assigned to {{ book_request.user.user.username }}
+                (Renewal Date: {{ book_request.renewal_date }})
+                <form method="post" action="{% url 'assigned_books' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="request_id" value="{{ book_request.id }}">
+                    <input type="hidden" name="action" value="renew">
+                    <button type="submit">Renew</button>
+                </form>
+                <form method="post" action="{% url 'assigned_books' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="request_id" value="{{ book_request.id }}">
+                    <input type="hidden" name="action" value="remove">
+                    <button type="submit">Remove</button>
+                </form>
+            </li>
+        {% empty %}
+            <li>No books have been assigned yet.</li>
         {% endfor %}
     </ul>
-    <p><a href="{% url 'librarian_dashboard' %}">Back to Dashboard</a></p>
+    <a href="{% url 'librarian_dashboard' %}">Back to Dashboard</a>
 </body>
 </html>

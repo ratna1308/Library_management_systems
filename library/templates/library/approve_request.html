@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Approve Requests</title>
+</head>
+<body>
+    <h1>Approve Book Requests</h1>
+    <ul>
+        {% for request in requests %}
+            <li>
+                {{ request.book.title }} requested by {{ request.user.user.username }} on {{ request.request_date }}
+                <!-- Form to submit approval for this specific request -->
+                <form method="post" action="{% url 'approve_request' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="request_id" value="{{ request.id }}">
+                    <button type="submit">Approve Request</button>
+                </form>
+            </li>
+        {% empty %}
+            <li>No pending requests.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'librarian_dashboard' %}">Back to Dashboard</a>
+</body>
+</html>
